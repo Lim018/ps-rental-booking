@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->constrained()->nullable();
             $table->foreignId('service_id')->constrained();
             $table->date('booking_date');
             $table->string('session_time');
@@ -24,6 +24,10 @@ return new class extends Migration
             $table->string('payment_token')->nullable();
             $table->string('payment_url')->nullable();
             $table->string('payment_id')->nullable();
+            $table->boolean('is_used')->default(false);
+            $table->timestamp('used_at')->nullable();$table->string('user_name');
+            $table->string('user_phone');
+            $table->text('notes')->nullable();
             $table->timestamps();
         });
     }

@@ -20,7 +20,11 @@ class Booking extends Model
         'status',
         'payment_token',
         'payment_url',
-        'payment_id'
+        'payment_id',
+        'user_name', 
+        'user_email',
+        'user_phone',
+        'notes',
     ];
 
     public function user()
