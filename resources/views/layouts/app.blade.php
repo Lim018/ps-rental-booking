@@ -34,12 +34,6 @@
                             <li class="{{ request()->is('/') ? 'active' : '' }}">
                                 <a href="{{ url('/') }}">Home</a>
                             </li>
-                            <li class="{{ request()->routeIs('booking.*') ? 'active' : '' }}">
-                                <a href="{{ route('booking.create') }}">Book Now</a>
-                            </li>
-                            <li class="{{ request()->routeIs('check') ? 'active' : '' }}">
-                                <a href="{{ route('check') }}">Check Booking</a>
-                            </li>
                             <li>
                                 <a href="/#pricing">Pricing</a>
                             </li>
@@ -48,6 +42,9 @@
                             </li>
                             <li>
                                 <a href="/#contact">Contact</a>
+                            </li>
+                            <li class="{{ request()->routeIs('check') ? 'active' : '' }}">
+                                <a href="{{ route('check') }}">Check Booking</a>
                             </li>
                         </ul>
                     </nav>
@@ -72,12 +69,6 @@
                         <li class="{{ request()->is('/') ? 'active' : '' }}">
                             <a href="{{ url('/') }}">Home</a>
                         </li>
-                        <li class="{{ request()->routeIs('booking.create') ? 'active' : '' }}">
-                            <a href="{{ route('booking.create') }}">Book Now</a>
-                        </li>
-                        <li class="{{ request()->routeIs('check') ? 'active' : '' }}">
-                            <a href="{{ route('check') }}">Check Booking</a>
-                        </li>
                         <li>
                             <a href="/#pricing">Pricing</a>
                         </li>
@@ -85,14 +76,13 @@
                             <a href="/#about">About</a>
                         </li>
                         <li>
-                            <a href="/  #contact">Contact</a>
+                            <a href="/#contact">Contact</a>
+                        </li>
+                        <li class="{{ request()->routeIs('check') ? 'active' : '' }}">
+                            <a href="{{ route('check') }}">Check Booking</a>
                         </li>
                     </ul>
                 </nav>
-
-                <div class="mobile-auth">
-                    <a href="{{ route('booking.create') }}" class="btn btn-primary">Book Now</a>
-                </div>
             </div>
         </div>
 

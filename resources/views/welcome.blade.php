@@ -18,7 +18,7 @@
                 <p class="hero-subtitle">Experience gaming like never before with our premium PlayStation rental service.</p>
                 <div class="hero-buttons">
                     <a href="{{ route('booking.create') }}" class="btn btn-secondary btn-lg">Book Now</a>
-                    <a href="#pricing" class="btn btn-outline btn-lg">View Pricing</a>
+                    <a href="#pricing" class="btn btn-primary btn-lg">View Pricing</a>
                 </div>
             </div>
         </div>

@@ -181,36 +181,48 @@ function initBookingSteps() {
 * Populate the review section with form data
 */
 function populateReviewSection() {
-  // Step 1: Booking Details
-  const bookingDate = document.getElementById("booking_date").value;
-  const sessionTime = document.querySelector('input[name="session_time"]:checked')?.value || "";
-  const serviceId = document.querySelector('input[name="service_id"]:checked')?.value || "";
-  const serviceName = document.querySelector(`#service-${serviceId}`)?.parentElement.querySelector(".service-option-title")?.textContent || "";
+    console.log("Populating review section...");
 
-  document.getElementById("review-date").textContent = bookingDate || "Not selected";
-  document.getElementById("review-time").textContent = sessionTime || "Not selected";
-  document.getElementById("review-service").textContent = serviceName || "Not selected";
+    // Step 1: Booking Details
+    const bookingDate = document.getElementById("booking_date")?.value || "";
+    const sessionTime = document.querySelector('input[name="session_time"]:checked')?.value || "";
+    const serviceId = document.querySelector('input[name="service_id"]:checked')?.value || "";
+    const serviceName = document.querySelector(`#service-${serviceId}`)?.parentElement?.querySelector(".service-option-title")?.textContent || "";
 
-  // Step 2: Personal Information
-  const name = document.getElementById("name").value;
-  const email = document.getElementById("email").value;
-  const phone = document.getElementById("phone").value;
+    console.log("Booking Date:", bookingDate);
+    console.log("Session Time:", sessionTime);
+    console.log("Service ID:", serviceId);
+    console.log("Service Name:", serviceName);
 
-  document.getElementById("review-name").textContent = name || "Not provided";
-  document.getElementById("review-email").textContent = email || "Not provided";
-  document.getElementById("review-phone").textContent = phone || "Not provided";
+    document.getElementById("review-date").textContent = bookingDate || "Not selected";
+    document.getElementById("review-time").textContent = sessionTime || "Not selected";
+    document.getElementById("review-service").textContent = serviceName || "Not selected";
 
-  // Price Summary
-  const basePrice = parseFloat(document.getElementById("base_price").value) || 0;
-  const weekendSurcharge = parseFloat(document.getElementById("weekend_surcharge").value) || 0;
-  const totalPrice = parseFloat(document.getElementById("total_price").value) || 0;
+    // Step 2: Personal Information
+    const name = document.getElementById("name")?.value || "";
+    const phone = document.getElementById("phone")?.value || "";
 
-  document.getElementById("review-base-price").textContent = formatCurrency(basePrice);
-  document.getElementById("review-weekend-surcharge").textContent = formatCurrency(weekendSurcharge);
-  document.getElementById("review-total-price").textContent = formatCurrency(totalPrice);
+    console.log("Name:", name);
+    console.log("Phone:", phone);
 
-  // Show weekend surcharge if applicable
-  document.getElementById("review-weekend-container").style.display = weekendSurcharge > 0 ? "flex" : "none";
+    document.getElementById("review-name").textContent = name || "Not provided";
+    document.getElementById("review-phone").textContent = phone || "Not provided";
+
+    // Price Summary
+    const basePrice = parseFloat(document.getElementById("base_price")?.value) || 0;
+    const weekendSurcharge = parseFloat(document.getElementById("weekend_surcharge")?.value) || 0;
+    const totalPrice = parseFloat(document.getElementById("total_price")?.value) || 0;
+
+    console.log("Base Price:", basePrice);
+    console.log("Weekend Surcharge:", weekendSurcharge);
+    console.log("Total Price:", totalPrice);
+
+    document.getElementById("review-base-price").textContent = formatCurrency(basePrice);
+    document.getElementById("review-weekend-surcharge").textContent = formatCurrency(weekendSurcharge);
+    document.getElementById("review-total-price").textContent = formatCurrency(totalPrice);
+
+    // Show weekend surcharge if applicable
+    document.getElementById("review-weekend-container").style.display = weekendSurcharge > 0 ? "flex" : "none";
 }
 
 /**

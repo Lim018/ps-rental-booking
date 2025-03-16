@@ -60,7 +60,7 @@
                     </svg>
                     Download Booking PDF
                 </a>
-                <a href="{{ route('booking.index') }}" class="btn btn-outline ml-2">Return to Bookings</a>
+                <a href="{{ route('booking.create') }}" class="btn btn-outline ml-2">Return to Bookings</a>
             </div>
         </div>
     </div>
