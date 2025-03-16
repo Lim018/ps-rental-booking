@@ -204,7 +204,7 @@
                         <line x1="12" y1="16" x2="12.01" y2="16"></line>
                     </svg>
                 </div>
-                <p>Weekend surcharge (20%) applies for bookings on Saturday and Sunday</p>
+                <p>Weekend surcharge (Rp 50.000) applies for bookings on Saturday and Sunday</p>
             </div>
         </div>
     </section>

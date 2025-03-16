@@ -379,51 +379,50 @@ function initCalendar() {
 
   // Update price with weekend surcharge
   function updatePriceWithWeekendSurcharge(date) {
-      const isWeekend = date.getDay() === 0 || date.getDay() === 6; // Sunday or Saturday
-      const serviceRadios = document.querySelectorAll('input[name="service_id"]');
-      const selectedService = Array.from(serviceRadios).find((radio) => radio.checked);
+    const isWeekend = date.getDay() === 0 || date.getDay() === 6 // Sunday or Saturday
+    const serviceRadios = document.querySelectorAll('input[name="service_id"]')
+    const selectedService = Array.from(serviceRadios).find((radio) => radio.checked)
 
-      if (!selectedService) return;
+    if (!selectedService) return
 
-      const basePrice = Number.parseFloat(selectedService.getAttribute("data-price") || 0);
-      const weekendSurchargeRate = 0.2; // 20%
-      const weekendSurcharge = isWeekend ? basePrice * weekendSurchargeRate : 0;
-      const totalPrice = basePrice + weekendSurcharge;
+    const basePrice = Number.parseFloat(selectedService.getAttribute("data-price") || 0)
+    const weekendSurcharge = isWeekend ? 50000 : 0 // Fixed 50,000 IDR surcharge for weekends
+    const totalPrice = basePrice + weekendSurcharge
 
-      // Update price display
-      const basePriceEl = document.getElementById("base-price");
-      const weekendSurchargeEl = document.getElementById("weekend-surcharge");
-      const totalPriceEl = document.getElementById("total-price");
-      const weekendSurchargeContainer = document.getElementById("weekend-surcharge-container");
+    // Update price display
+    const basePriceEl = document.getElementById("base-price")
+    const weekendSurchargeEl = document.getElementById("weekend-surcharge")
+    const totalPriceEl = document.getElementById("total-price")
+    const weekendSurchargeContainer = document.getElementById("weekend-surcharge-container")
 
-      if (basePriceEl) {
-          basePriceEl.textContent = formatCurrency(basePrice);
+    if (basePriceEl) {
+      basePriceEl.textContent = formatCurrency(basePrice)
+    }
+
+    if (weekendSurchargeEl) {
+      weekendSurchargeEl.textContent = formatCurrency(weekendSurcharge)
+    }
+
+    if (weekendSurchargeContainer) {
+      if (isWeekend) {
+        weekendSurchargeContainer.classList.remove("hidden")
+      } else {
+        weekendSurchargeContainer.classList.add("hidden")
       }
+    }
 
-      if (weekendSurchargeEl) {
-          weekendSurchargeEl.textContent = formatCurrency(weekendSurcharge);
-      }
+    if (totalPriceEl) {
+      totalPriceEl.textContent = formatCurrency(totalPrice)
+    }
 
-      if (weekendSurchargeContainer) {
-          if (isWeekend) {
-              weekendSurchargeContainer.classList.remove("hidden");
-          } else {
-              weekendSurchargeContainer.classList.add("hidden");
-          }
-      }
+    // Update hidden inputs
+    const basePriceInput = document.getElementById("base_price")
+    const weekendSurchargeInput = document.getElementById("weekend_surcharge")
+    const totalPriceInput = document.getElementById("total_price")
 
-      if (totalPriceEl) {
-          totalPriceEl.textContent = formatCurrency(totalPrice);
-      }
-
-      // Update hidden inputs
-      const basePriceInput = document.getElementById("base_price");
-      const weekendSurchargeInput = document.getElementById("weekend_surcharge");
-      const totalPriceInput = document.getElementById("total_price");
-
-      if (basePriceInput) basePriceInput.value = basePrice;
-      if (weekendSurchargeInput) weekendSurchargeInput.value = weekendSurcharge;
-      if (totalPriceInput) totalPriceInput.value = totalPrice;
+    if (basePriceInput) basePriceInput.value = basePrice
+    if (weekendSurchargeInput) weekendSurchargeInput.value = weekendSurcharge
+    if (totalPriceInput) totalPriceInput.value = totalPrice
   }
 }
 
@@ -466,50 +465,50 @@ function initServiceSelection() {
 
   // Update price with weekend surcharge
   function updatePriceWithWeekendSurcharge(date) {
-      const isWeekend = date.getDay() === 0 || date.getDay() === 6; // Sunday or Saturday
-      const selectedService = Array.from(serviceRadios).find((radio) => radio.checked);
+    const isWeekend = date.getDay() === 0 || date.getDay() === 6 // Sunday or Saturday
+    const serviceRadios = document.querySelectorAll('input[name="service_id"]')
+    const selectedService = Array.from(serviceRadios).find((radio) => radio.checked)
 
-      if (!selectedService) return;
+    if (!selectedService) return
 
-      const basePrice = Number.parseFloat(selectedService.getAttribute("data-price") || 0);
-      const weekendSurchargeRate = 0.2; // 20%
-      const weekendSurcharge = isWeekend ? basePrice * weekendSurchargeRate : 0;
-      const totalPrice = basePrice + weekendSurcharge;
+    const basePrice = Number.parseFloat(selectedService.getAttribute("data-price") || 0)
+    const weekendSurcharge = isWeekend ? 50000 : 0 // Fixed 50,000 IDR surcharge for weekends
+    const totalPrice = basePrice + weekendSurcharge
 
-      // Update price display
-      const basePriceEl = document.getElementById("base-price");
-      const weekendSurchargeEl = document.getElementById("weekend-surcharge");
-      const totalPriceEl = document.getElementById("total-price");
-      const weekendSurchargeContainer = document.getElementById("weekend-surcharge-container");
+    // Update price display
+    const basePriceEl = document.getElementById("base-price")
+    const weekendSurchargeEl = document.getElementById("weekend-surcharge")
+    const totalPriceEl = document.getElementById("total-price")
+    const weekendSurchargeContainer = document.getElementById("weekend-surcharge-container")
 
-      if (basePriceEl) {
-          basePriceEl.textContent = formatCurrency(basePrice);
+    if (basePriceEl) {
+      basePriceEl.textContent = formatCurrency(basePrice)
+    }
+
+    if (weekendSurchargeEl) {
+      weekendSurchargeEl.textContent = formatCurrency(weekendSurcharge)
+    }
+
+    if (weekendSurchargeContainer) {
+      if (isWeekend) {
+        weekendSurchargeContainer.classList.remove("hidden")
+      } else {
+        weekendSurchargeContainer.classList.add("hidden")
       }
+    }
 
-      if (weekendSurchargeEl) {
-          weekendSurchargeEl.textContent = formatCurrency(weekendSurcharge);
-      }
+    if (totalPriceEl) {
+      totalPriceEl.textContent = formatCurrency(totalPrice)
+    }
 
-      if (weekendSurchargeContainer) {
-          if (isWeekend) {
-              weekendSurchargeContainer.classList.remove("hidden");
-          } else {
-              weekendSurchargeContainer.classList.add("hidden");
-          }
-      }
+    // Update hidden inputs
+    const basePriceInput = document.getElementById("base_price")
+    const weekendSurchargeInput = document.getElementById("weekend_surcharge")
+    const totalPriceInput = document.getElementById("total_price")
 
-      if (totalPriceEl) {
-          totalPriceEl.textContent = formatCurrency(totalPrice);
-      }
-
-      // Update hidden inputs
-      const basePriceInput = document.getElementById("base_price");
-      const weekendSurchargeInput = document.getElementById("weekend_surcharge");
-      const totalPriceInput = document.getElementById("total_price");
-
-      if (basePriceInput) basePriceInput.value = basePrice;
-      if (weekendSurchargeInput) weekendSurchargeInput.value = weekendSurcharge;
-      if (totalPriceInput) totalPriceInput.value = totalPrice;
+    if (basePriceInput) basePriceInput.value = basePrice
+    if (weekendSurchargeInput) weekendSurchargeInput.value = weekendSurcharge
+    if (totalPriceInput) totalPriceInput.value = totalPrice
   }
 }
 
