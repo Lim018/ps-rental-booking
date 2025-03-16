@@ -4,10 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Models\Booking;
 use Illuminate\Http\Request;
+use Midtrans\Config;
 use Midtrans\Notification;
+use Illuminate\Support\Facades\Log;
 
 class MidtransCallbackController extends Controller
 {
+    public function __construct()
+    {
+        Config::$serverKey = config('services.midtrans.server_key');
+        Config::$isProduction = config('services.midtrans.is_production');
+        Config::$isSanitized = config('services.midtrans.is_sanitized');
+        Config::$is3ds = config('services.midtrans.is_3ds');
+    }
+
     public function handle(Request $request)
     {
         try {
@@ -18,33 +28,35 @@ class MidtransCallbackController extends Controller
             $transactionStatus = $notification->transaction_status;
             $fraudStatus = $notification->fraud_status;
             
-            // Extract booking ID from order ID (PS-{id})
-            $bookingId = substr($orderId, 3);
-            $booking = Booking::findOrFail($bookingId);
+            $booking = Booking::findOrFail($orderId);
             
             if ($transactionStatus == 'capture') {
                 if ($fraudStatus == 'challenge') {
-                    $booking->status = 'pending';
+                    $booking->status = 'Pending';
                 } else if ($fraudStatus == 'accept') {
-                    $booking->status = 'paid';
+                    $booking->status = 'Paid';
+                    
+                    // Generate PDF and send SMS with download link
+                    app(BookingController::class)->generateAndSendPDF($booking);
                 }
             } else if ($transactionStatus == 'settlement') {
-                $booking->status = 'paid';
+                $booking->status = 'Paid';
+                
+                // Generate PDF and send SMS with download link
+                app(BookingController::class)->generateAndSendPDF($booking);
             } else if ($transactionStatus == 'cancel' || $transactionStatus == 'deny' || $transactionStatus == 'expire') {
-                $booking->status = 'cancelled';
+                $booking->status = 'Cancelled';
             } else if ($transactionStatus == 'pending') {
-                $booking->status = 'pending';
+                $booking->status = 'Pending';
             }
             
-            $booking->payment_id = $notification->transaction_id;
             $booking->save();
             
-            return response()->json(['status' => 'success']);
+            return response()->json(['success' => true]);
         } catch (\Exception $e) {
-            return response()->json([
-                'status' => 'error',
-                'message' => $e->getMessage()
-            ], 500);
+            Log::error('Midtrans callback error: ' . $e->getMessage());
+            return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
         }
     }
 }
+

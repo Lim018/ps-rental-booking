@@ -24,7 +24,7 @@
                </div>
 
                <div class="tab-content active" id="phone-tab">
-                   <form action="{{ route('booking.find-by-phone') }}" method="POST" class="booking-check-form">
+                   <form action="{{ route('find-by-phone') }}" method="POST" class="booking-check-form">
                        @csrf
                        <div class="form-group">
                            <label for="phone" class="form-label">Phone Number</label>
@@ -35,7 +35,7 @@
                </div>
 
                <div class="tab-content" id="booking-id-tab">
-                   <form action="{{ route('booking.find-by-id') }}" method="POST" class="booking-check-form">
+                   <form action="{{ route('find-by-id') }}" method="POST" class="booking-check-form">
                        @csrf
                        <div class="form-group">
                            <label for="booking_id" class="form-label">Booking ID</label>

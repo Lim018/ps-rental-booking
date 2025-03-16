@@ -12,7 +12,6 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Auth;
 
 class BookingController extends Controller
 {
@@ -84,12 +83,8 @@ class BookingController extends Controller
         $booking->is_used = false;
         $booking->save();
         
-        // Generate payment URL (Midtrans integration)
-        $paymentUrl = $this->generatePaymentUrl($booking);
-        $booking->payment_url = $paymentUrl;
-        $booking->save();
-        
-        return redirect($paymentUrl);
+        // Redirect to checkout process
+        return redirect()->route('checkout.process', $booking->id);
     }
 
     /**
@@ -178,54 +173,6 @@ class BookingController extends Controller
     }
 
     /**
-     * Handle Midtrans payment notification.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function handlePaymentNotification(Request $request)
-    {
-        $input = $request->all();
-        
-        // Verify signature (in a real implementation)
-        // $this->verifySignature($input);
-        
-        $orderId = $input['order_id'];
-        $transactionStatus = $input['transaction_status'];
-        $fraudStatus = $input['fraud_status'] ?? null;
-        
-        $booking = Booking::find($orderId);
-        
-        if (!$booking) {
-            return response()->json(['status' => 'error', 'message' => 'Booking not found'], 404);
-        }
-        
-        if ($transactionStatus == 'capture') {
-            if ($fraudStatus == 'challenge') {
-                $booking->status = 'Pending';
-            } else if ($fraudStatus == 'accept') {
-                $booking->status = 'Paid';
-                
-                // Generate PDF and send SMS with download link
-                $this->generateAndSendPDF($booking);
-            }
-        } else if ($transactionStatus == 'settlement') {
-            $booking->status = 'Paid';
-            
-            // Generate PDF and send SMS with download link
-            $this->generateAndSendPDF($booking);
-        } else if ($transactionStatus == 'cancel' || $transactionStatus == 'deny' || $transactionStatus == 'expire') {
-            $booking->status = 'Cancelled';
-        } else if ($transactionStatus == 'pending') {
-            $booking->status = 'Pending';
-        }
-        
-        $booking->save();
-        
-        return response()->json(['status' => 'success']);
-    }
-
-    /**
      * Generate and download PDF for a booking.
      *
      * @param  \App\Models\Booking  $booking
@@ -242,22 +189,6 @@ class BookingController extends Controller
         $pdf = PDF::loadView('booking.pdf', compact('booking', 'qrCode'));
         
         return $pdf->download('booking-' . $booking->id . '.pdf');
-    }
-
-    /**
-     * Generate payment URL using Midtrans.
-     *
-     * @param  \App\Models\Booking  $booking
-     * @return string
-     */
-    private function generatePaymentUrl(Booking $booking)
-    {
-        // In a real implementation, this would integrate with Midtrans
-        // For this example, we'll just return a mock URL
-        
-        // For testing purposes, we'll just redirect to the booking show page
-        // In a real implementation, this would be the Midtrans payment URL
-        return route('booking.show', $booking->id);
     }
 
     /**
@@ -282,7 +213,7 @@ class BookingController extends Controller
      * @param  \App\Models\Booking  $booking
      * @return void
      */
-    private function generateAndSendPDF(Booking $booking)
+    public function generateAndSendPDF(Booking $booking)
     {
         // Generate QR code
         $qrCode = $this->generateQRCode($booking->id);

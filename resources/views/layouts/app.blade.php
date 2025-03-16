@@ -4,30 +4,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <title>{{ config('app.name', 'PS Rental') }} - @yield('title', 'PlayStation Rental Service')</title>
-
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Global CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/reset.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/global.css') }}">
-    
-    <!-- Page-specific CSS -->
     @yield('styles')
-    
-    <!-- Global JavaScript -->
     <script src="{{ asset('assets/js/global.js') }}" defer></script>
-    
-    <!-- Page-specific JavaScript -->
     @yield('scripts')
 </head>
 <body>
     <div id="app">
-        <!-- Header -->
         <header class="site-header">
             <div class="container">
                 <div class="header-content">
@@ -64,7 +52,6 @@
                         </ul>
                     </nav>
 
-                    <!-- Replace the user-menu div with a simple book now button -->
                     <div class="user-menu">
                         <a href="{{ route('booking.create') }}" class="btn btn-primary">Book Now</a>
                     </div>
@@ -78,7 +65,6 @@
             </div>
         </header>
 
-        <!-- Mobile Menu -->
         <div class="mobile-menu">
             <div class="container">
                 <nav>
@@ -110,7 +96,6 @@
             </div>
         </div>
 
-        <!-- Flash Messages -->
         @if (session('success'))
             <div class="flash-message success" id="flash-message">
                 <div class="container">
@@ -156,12 +141,10 @@
             </div>
         @endif
 
-        <!-- Page Content -->
         <main class="site-main">
             @yield('content')
         </main>
 
-        <!-- Footer -->
         <footer class="site-footer">
             <div class="container">
                 <div class="footer-content">

@@ -11,7 +11,6 @@
 @endsection
 
 @section('content')
-    <!-- Hero Section -->
     <section class="hero">
         <div class="container">
             <div class="hero-content">
@@ -25,7 +24,6 @@
         </div>
     </section>
 
-    <!-- How It Works Section -->
     <section class="how-it-works">
         <div class="container">
             <h2 class="section-title">How It Works</h2>
@@ -80,7 +78,6 @@
         </div>
     </section>
 
-    <!-- Services Section -->
     <section class="services" id="pricing">
         <div class="container">
             <h2 class="section-title">Our Services</h2>
@@ -211,8 +208,6 @@
             </div>
         </div>
     </section>
-
-    <!-- Testimonials Section -->
     <section class="testimonials">
         <div class="container">
             <h2 class="section-title">What Our Customers Say</h2>
@@ -225,7 +220,7 @@
                     </div>
                     <div class="testimonial-author">
                         <div class="author-avatar">
-                            <img src="{{ asset('img/avatar-1.jpg') }}" alt="John Doe" onerror="this.src='https://via.placeholder.com/50'">
+                            <img src="{{ asset('assets/img/avatar-1.jpg') }}" alt="John Doe">
                         </div>
                         <div class="author-info">
                             <div class="author-name">John Doe</div>
@@ -240,7 +235,7 @@
                     </div>
                     <div class="testimonial-author">
                         <div class="author-avatar">
-                            <img src="{{ asset('img/avatar-2.jpg') }}" alt="Sarah Johnson" onerror="this.src='https://via.placeholder.com/50'">
+                            <img src="{{ asset('assets/img/avatar-2.jpg') }}" alt="Sarah Johnson">
                         </div>
                         <div class="author-info">
                             <div class="author-name">Sarah Johnson</div>
@@ -255,7 +250,7 @@
                     </div>
                     <div class="testimonial-author">
                         <div class="author-avatar">
-                            <img src="{{ asset('img/avatar-3.jpg') }}" alt="Michael Brown" onerror="this.src='https://via.placeholder.com/50'">
+                            <img src="{{ asset('assets/img/avatar-3.jpg') }}" alt="Michael Brown">
                         </div>
                         <div class="author-info">
                             <div class="author-name">Michael Brown</div>
@@ -266,8 +261,6 @@
             </div>
         </div>
     </section>
-
-    <!-- CTA Section -->
     <section class="cta">
         <div class="container">
             <h2 class="cta-title">Ready to Start Gaming?</h2>
@@ -275,8 +268,6 @@
             <a href="{{ route('booking.create') }}" class="cta-button">Book Your Session Now</a>
         </div>
     </section>
-
-    <!-- About Section -->
     <section class="about" id="about">
         <div class="container">
             <h2 class="section-title">About PS Rental</h2>
@@ -295,8 +286,6 @@
             </div>
         </div>
     </section>
-
-    <!-- Contact Section -->
     <section class="contact" id="contact">
         <div class="container">
             <h2 class="section-title">Contact Us</h2>

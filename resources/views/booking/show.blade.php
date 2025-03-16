@@ -191,7 +191,7 @@
             
             <div class="booking-actions">
                 @if($booking->status == 'Pending')
-                    <a href="{{ $booking->payment_url }}" class="btn btn-primary">Complete Payment</a>
+                    <a href="{{ route('checkout.process', $booking->id) }}" class="btn btn-primary">Complete Payment</a>
                 @endif
                 
                 @if($booking->status == 'Paid')
@@ -212,14 +212,6 @@
                         <button type="submit" class="btn btn-outline btn-danger" onclick="return confirm('Are you sure you want to cancel this booking?')">Cancel Booking</button>
                     </form>
                 @endif
-                
-                <a href="{{ $booking->payment_url }}" class="btn btn-secondary">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-icon">
-        <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
-        <line x1="1" y1="10" x2="23" y2="10"></line>
-    </svg>
-    Proceed to Payment
-</a>
             </div>
         </div>
     </div>

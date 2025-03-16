@@ -1,0 +1,39 @@
+.booking-card {
+    margin-bottom: 20px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.booking-header {
+    padding: 15px;
+    background-color: #f9fafb;
+    border-bottom: 1px solid #e5e7eb;
+}
+.booking-body {
+    padding: 15px;
+}
+.booking-footer {
+    padding: 15px;
+    background-color: #f9fafb;
+    border-top: 1px solid #e5e7eb;
+}
+.price-summary {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.summary-total {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #e5e7eb;
+    font-weight: bold;
+    font-size: 1.1em;
+}

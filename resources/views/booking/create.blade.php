@@ -16,7 +16,6 @@
            <h1 class="booking-title">Book Your PlayStation Session</h1>
            <p class="booking-subtitle">Follow the steps below to complete your booking</p>
        </div>
-
        <div class="booking-steps">
            <div class="booking-step active">
                <div class="step-number">1</div>
@@ -34,12 +33,8 @@
 
        <form id="booking-form" class="booking-form" method="POST" action="{{ route('booking.store') }}">
            @csrf
-           
-           <!-- Step 1: Date and Service Selection -->
            <div class="form-section" id="section-date-service">
                <h2 class="form-section-title">Select Date & Service</h2>
-               
-               <!-- Calendar -->
                <div class="calendar-container">
                    <div class="calendar-header">
                        <h3 class="calendar-title">Select Date</h3>
@@ -64,8 +59,6 @@
                    
                    <input type="hidden" id="booking_date" name="booking_date" required>
                </div>
-               
-               <!-- Service Selection -->
                <div class="service-options-container">
                 <h3>Select Console</h3>
                 <div class="service-options">
@@ -90,8 +83,6 @@
                     @endforeach
                 </div>
             </div>
-               
-               <!-- Time Slot Selection -->
                <div class="time-slots-container">
                    <h3>Select Time Slot</h3>
                    <div class="time-slots">
@@ -103,8 +94,6 @@
                        @endforeach
                    </div>
                </div>
-               
-               <!-- Price Summary -->
                <div class="price-summary">
                    <h3 class="price-summary-title">Price Summary</h3>
                    <div class="price-summary-item">
@@ -124,7 +113,6 @@
                    <input type="hidden" id="weekend_surcharge" name="weekend_surcharge" value="0">
                    <input type="hidden" id="total_price" name="total_price" value="0">
                </div>
-               
                <div class="booking-nav">
                    <div></div>
                    <button type="button" class="btn btn-primary btn-next">
@@ -136,8 +124,6 @@
                    </button>
                </div>
            </div>
-           
-           <!-- Step 2: Personal Information -->
            <div class="form-section" id="section-personal-info">
                <h2 class="form-section-title">Your Information</h2>
                
@@ -180,8 +166,6 @@
                    </button>
                </div>
            </div>
-           
-           <!-- Step 3: Review & Payment -->
            <div class="form-section" id="section-review">
                <h2 class="form-section-title">Review & Payment</h2>
                
